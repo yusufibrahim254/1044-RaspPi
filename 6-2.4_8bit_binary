@@ -1,0 +1,37 @@
+import RPi.GPIO as GPIO #Library for the GPIO Pins
+import time #Library for time-related tasks
+
+GPIO.setwarnings(False)
+GPIO.setmode(GPIO.BCM) #Sets the way we reference the GPIO Pins
+GPIO.setup(23,GPIO.OUT) #Sets GPIO Pin 23 to an output pin
+GPIO.setup(24,GPIO.OUT)#Sets GPIO Pin 24 to an output pin
+GPIO.setup(25,GPIO.OUT)#Sets GPIO Pin 25 to an output pin
+GPIO.setup(8,GPIO.OUT)#Sets GPIO Pin 8 to an output pin
+GPIO.setup(7,GPIO.OUT)#Sets GPIO Pin 7 to an output pin
+GPIO.setup(1,GPIO.OUT)#Sets GPIO Pin 1 to an output pin
+GPIO.setup(12,GPIO.OUT)#Sets GPIO Pin 12 to an output pin
+GPIO.setup(16,GPIO.OUT)#Sets GPIO Pin 16 to an output pin
+
+
+
+
+
+
+
+arr=[16, 12, 1, 7, 8, 25, 24, 23]#Sets an inverse array containing all Pin numbers to use in the while loop.
+
+counter = 0 #Sets the counter that will go through each decimal integer to zero for the while loop.
+while counter<=255 - 0: #Student number ends in 0, therefore we will represent all numbers up to 255 as binary.
+    x = counter #Sets the x variable to the integer value to perform calculations.
+    power = 0 #Sets the power for the while loop to 0.
+    while power <= 7: #Goes through each power value under and including 7, as the highest binary position in this case is pow(2, 7)
+        if (x//pow(2,power)) % 2 == 0: #Determines whether the byte has a value of 1 or 0 (on or off, respectively)
+            GPIO.output(arr[power],GPIO.LOW) #Sets the voltage of Pin in position of arr[power] to 'LOW' (0V)
+        else:
+            GPIO.output(arr[power],GPIO.HIGH) #Sets the voltage of Pin 23 'HIGH' (3.3V)
+        power += 1 #Acts as the counter for the power while loop
+    time.sleep(1) #Pauses the program for 1 second
+    counter += 1 #Acts as a counter for the counter while loop
+    
+
+GPIO.cleanup()#Resets the GPIO Pins that we used

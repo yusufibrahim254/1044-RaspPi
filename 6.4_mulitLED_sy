@@ -1,0 +1,26 @@
+import RPi.GPIO as GPIO #Library for the GPIO Pins
+import time #Library for time-related tasks
+
+GPIO.setmode(GPIO.BCM) #Sets the way we reference the GPIO Pins
+GPIO.setup(23,GPIO.OUT) #Sets GPIO Pin 23 to an output pin
+GPIO.setup(24,GPIO.OUT)#Sets GPIO Pin 24 to an output pin
+GPIO.setup(25,GPIO.OUT)#Sets GPIO Pin 25 to an output pin
+GPIO.setup(8,GPIO.OUT)#Sets GPIO Pin 8 to an output pin
+GPIO.setup(7,GPIO.OUT)#Sets GPIO Pin 7 to an output pin
+GPIO.setup(1,GPIO.OUT)#Sets GPIO Pin 1 to an output pin
+GPIO.setup(12,GPIO.OUT)#Sets GPIO Pin 12 to an output pin
+GPIO.setup(16,GPIO.OUT)#Sets GPIO Pin 16 to an output pin
+
+arr=[23, 24, 25, 8, 7, 1, 12, 16] #Sets an array containing all Pin numbers
+arr2=[23, 25, 7, 12, 24, 8, 1, 16] #Sets an array containing all Pin numbers in given order to turn them off
+for x in range(7): #iterates through the loop 7 times
+
+    GPIO.output(arr[x],GPIO.HIGH) #Sets the voltage of Pin 23 'HIGH' (3.3V)
+    time.sleep(1) #Pauses the program for 1 second
+    
+for x in range(7): #iterates through the loop 7 times
+    GPIO.output(arr2[x],GPIO.LOW) #Sets the voltage of Pin 23 'LOW' (0V)
+    time.sleep(1) #Pauses the program for 1 second
+    
+GPIO.cleanup()#Resets the GPIO Pins that we used
+
